@@ -25,13 +25,14 @@ pipeline {
         stage('BuildPush') {
             steps {
                 dir('spring-boot-rest-2/spring-boot-rest-2') {
-                 sh "mvn -e clean install"
+                   sh "mvn -e clean install"
+                 }
                 echo 'Build Push'
             }
         }
         stage('DeployApp') {
             steps {
-	sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
+	             sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
                  echo 'Deploy App'
             }
         }
