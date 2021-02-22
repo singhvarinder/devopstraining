@@ -33,7 +33,9 @@ pipeline {
         stage('DeployApp') {
             steps {
                 dir('spring-boot-rest-2/spring-boot-rest-2') {
-	             sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
+                    withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+	                    sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
+                    }
                 }
                  echo 'Deploy App'
             }
