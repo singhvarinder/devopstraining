@@ -14,7 +14,7 @@ pipeline {
                  sh "mvn -e clean install"
                 }
                 
-  	 dependencyCheck additionalArguments: '--scan=. --format=html', odcInstallation: 'OWASP-Dependency-Check'         
+  	 dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'         
                 echo 'Quality Check'
             }
         }
