@@ -11,26 +11,28 @@ pipeline {
         stage('QualityCheck') {
             steps {
                 dir('spring-boot-rest-2/spring-boot-rest-2') {
-                 sh "mvn -e clean install"
-                }
-                
-  	 dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'         
+                 sh "mvn -e clean package"
+                }      
                 echo 'Quality Check'
             }
         }
         stage('SecurityCheck') {
             steps {
-                echo 'Security Checkt'
+                dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'       
+                echo 'Security Check'
             }
         }
         stage('BuildPush') {
             steps {
+                dir('spring-boot-rest-2/spring-boot-rest-2') {
+                 sh "mvn -e clean install"
                 echo 'Build Push'
             }
         }
         stage('DeployApp') {
             steps {
-                echo 'Deploy App'
+	sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
+                 echo 'Deploy App'
             }
         }
         stage('PostDeploy') {
