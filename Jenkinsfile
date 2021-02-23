@@ -10,9 +10,6 @@ pipeline {
         }
         stage('QualityCheck') {
             steps {
-                dir('spring-boot-rest-2/spring-boot-rest-2') {
-                 sh "mvn -e clean package"
-                }      
                 echo 'Quality Check'
             }
         }
@@ -20,6 +17,14 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'       
                 echo 'Security Check'
+            }
+        }
+       stage('BuidPre Step') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    sh "fuser -k 8083/tcp"
+                }
+               echo 'Cleaning Existing Build'
             }
         }
         stage('BuildPush') {
