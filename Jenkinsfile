@@ -10,6 +10,7 @@ pipeline {
         }
         stage('QualityCheck') {
             steps {
+                sh "/usr/local/bin/newman run QA8083.json"
                 echo 'Quality Check'
             }
         }
