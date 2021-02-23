@@ -8,16 +8,18 @@ pipeline {
                 
             }
         }
-        stage('QualityCheck') {
+        stage('QualityCheck and Security Check - Parallel Steps') {
             steps {
-                sh "/usr/local/bin/newman run QA8083.json -r html"
-                echo 'Quality Check'
-            }
-        }
-        stage('SecurityCheck') {
-            steps {
-                dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'       
-                echo 'Security Check'
+                parallel(
+                  QualityCheck: {
+                    sh "/usr/local/bin/newman run QA8083.json -r html"
+                    echo 'Quality Check P'
+                  },
+                  SecurityCheck: {
+                      dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'       
+                      echo 'Security Check P'
+                  }
+                )
             }
         }
        stage('BuidPre Step') {

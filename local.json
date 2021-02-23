@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "1975ecee-e8a2-43f1-a4db-98c8eaa8f892",
+		"name": "QATest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StatusCodeStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code == 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8083/student/allstudent",
+					"protocol": "http",
+					"host": [
+						"127.0.0.1"
+					],
+					"port": "8083",
+					"path": [
+						"student",
+						"allstudent"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
