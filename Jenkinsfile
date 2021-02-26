@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    node('Slaveone'){
     stages {
+      node('Slaveone"){
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'spring-boot-rest-2'], [$class: 'CheckoutOption', timeout: 5], [$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 5]], userRemoteConfigs: [[url: 'https://github.com/singhvarinder/devopstraining.git']]])
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 echo 'Post Deploy'
             }
-        }        
+       }   
+     }        
     }
- }
 }
