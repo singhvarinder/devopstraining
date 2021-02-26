@@ -1,5 +1,5 @@
 pipeline {
-    node('Slaveone")
+    node('Slaveone')
     stages {
         stage('Checkout') {
             steps {
