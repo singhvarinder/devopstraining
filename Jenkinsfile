@@ -1,5 +1,6 @@
 pipeline {
-    node('Slaveone')
+    agent any
+    node('Slaveone'){
     stages {
         stage('Checkout') {
             steps {
@@ -54,4 +55,5 @@ pipeline {
             }
         }        
     }
+ }
 }
