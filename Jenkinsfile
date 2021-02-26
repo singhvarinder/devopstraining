@@ -52,6 +52,7 @@ pipeline {
         }
         stage('PostDeploy') {
             steps {
+                mail bcc: '', body: 'This is test mail from post script in jenkins', cc: '', from: '', replyTo: '', subject: 'Security Check - Training', to: 'e3002311@localhost'
                 echo 'Post Deploy'
             }
        }   
