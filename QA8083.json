@@ -22,12 +22,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://vlmaz2021tn12.fisdev.local:8083/student/allstudent",
+					"raw": "http://localhost:8083/student/allstudent",
 					"protocol": "http",
 					"host": [
-						"vlmaz2021tn12",
-						"fisdev",
-						"local"
+						"localhost"
 					],
 					"port": "8083",
 					"path": [
